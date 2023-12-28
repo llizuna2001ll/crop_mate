@@ -1,4 +1,4 @@
-# flutter_projects
+# crop_mate
 
 A new Flutter testing project.
 

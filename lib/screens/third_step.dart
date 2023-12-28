@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/screens/second_step.dart';
+import 'package:flutter_projects/screens/sign_in.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class ThirdStep extends StatelessWidget {
@@ -24,8 +26,7 @@ class ThirdStep extends StatelessWidget {
             const SizedBox(height: 20),
             // Add some space between the image and text
             const Padding(
-              padding:
-              EdgeInsets.only(bottom: 10.0, left: 100.0, right: 100.0),
+              padding: EdgeInsets.only(bottom: 10.0, left: 100.0, right: 100.0),
               child: Text(
                 'Improve agriculture precision',
                 textAlign: TextAlign.center,
@@ -73,12 +74,19 @@ class ThirdStep extends StatelessWidget {
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                             const Color(0xFFD6D6D6)),
-                        minimumSize: MaterialStateProperty.all<Size>(
-                            const Size(
-                                180, 40)), // Adjust width and height here
+                        minimumSize: MaterialStateProperty.all<Size>(const Size(
+                            180, 40)), // Adjust width and height here
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/second_step');
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                const SecondStep(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
                       },
                       child: const Text(
                         'Back',
@@ -98,18 +106,29 @@ class ThirdStep extends StatelessWidget {
                         backgroundColor: MaterialStateProperty.all<Color>(
                             const Color(0xFF4BA26A)),
                         // Change the background color here
-                        minimumSize: MaterialStateProperty.all<Size>(
-                            const Size(
-                                180, 40)), // Adjust width and height here
+                        minimumSize: MaterialStateProperty.all<Size>(const Size(
+                            180, 40)), // Adjust width and height here
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            transitionDuration: const Duration(milliseconds: 500), // Set your desired duration
+                            pageBuilder: (context, animation1, animation2) {
+                              return FadeTransition(
+                                opacity: animation1,
+                                child: SignIn(),
+                              );
+                            },
+                          ),
+                        );
+                      },
                       child: const Text(
                         'Next',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           // Set the font weight to bold
-                          fontSize:
-                          16, // Optional: Adjust font size if needed
+                          fontSize: 16, // Optional: Adjust font size if needed
                         ),
                       ),
                     ),

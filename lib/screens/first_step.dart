@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/screens/second_step.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class FirstStep extends StatelessWidget {
@@ -96,11 +97,17 @@ class FirstStep extends StatelessWidget {
                         // Change the background color here
                         minimumSize: MaterialStateProperty.all<Size>(
                             const Size(
-                                180, 40)), // Adjust width and height here
+                                180, 40)),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/second_step');
-                      },
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>const SecondStep(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );                      },
                       child: const Text(
                         'Next',
                         style: TextStyle(

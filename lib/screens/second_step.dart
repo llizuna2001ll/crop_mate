@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/screens/first_step.dart';
+import 'package:flutter_projects/screens/third_step.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class SecondStep extends StatelessWidget {
@@ -78,7 +80,14 @@ class SecondStep extends StatelessWidget {
                                 180, 40)), // Adjust width and height here
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/first_step');
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>const FirstStep(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
                       },
                       child: const Text(
                         'Back',
@@ -104,7 +113,14 @@ class SecondStep extends StatelessWidget {
                                 180, 40)), // Adjust width and height here
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/third_step');
+                        Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>const ThirdStep(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        ); // Use pushReplacementNamed
                       },
                       child: const Text(
                         'Next',
