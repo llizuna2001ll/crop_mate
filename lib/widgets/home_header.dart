@@ -16,7 +16,14 @@ class HomeHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Icon(Icons.account_circle, color: Colors.black, size: 40.0,),
+          ClipOval(
+            child: Image(
+              image: AssetImage("lib/assets/images/user_icon.png"),
+              width: 30,
+              height: 30,
+              fit: BoxFit.cover, // Adjust the fit as needed
+            ),
+          ),
           SizedBox(width: 10.0),
           Text(
             'username',

@@ -39,19 +39,18 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Log In Page',
+      title: 'Sign Up Page',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
       home: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-          child: ListView(
-            padding: const EdgeInsets.all(16.0),
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: SizedBox(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(
                   width: 220,
                   height: 200,
                   child: Image.asset(
@@ -59,105 +58,87 @@ class _SignUpState extends State<SignUp> {
                     fit: BoxFit.contain,
                   ),
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 10.0),
-                child: Text(
+                const SizedBox(height: 20.0),
+                const Text(
                   'Sign Up',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
-                  textAlign: TextAlign.start,
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 20.0),
-                child: Text(
+                const SizedBox(height: 10.0),
+                const Text(
                   'Create your account in few steps',
                   style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal,
-                      color: Color(0xFF9C9C9C)),
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xFF9C9C9C),
+                  ),
                   textAlign: TextAlign.center,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: TextField(
-                    decoration: const InputDecoration(
-                      labelText: 'Username',
-                      prefixIcon: Icon(Icons.account_box_outlined),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        // Assuming this code is inside a Stateful widget
-                        username = value;
-                      });
-                    }),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 8.0),
-                child: TextField(
+                TextField(
+                  decoration: const InputDecoration(
+                    labelText: 'Username',
+                    prefixIcon: Icon(Icons.account_box_outlined),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      username = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 8.0),
+                TextField(
                   decoration: const InputDecoration(
                     labelText: 'Email',
                     prefixIcon: Icon(Icons.email_outlined),
                   ),
                   onChanged: (value) {
                     setState(() {
-                      // Assuming this code is inside a Stateful widget
                       email = value;
                     });
                   },
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: TextField(
-                    decoration: const InputDecoration(
-                      labelText: 'Phone Number',
-                      prefixIcon: Icon(Icons.phone_android),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        // Assuming this code is inside a Stateful widget
-                        contactNumber = value;
-                      });
-                    }),
-              ),
-               Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: TextField(
+                const SizedBox(height: 8.0),
+                TextField(
+                  decoration: const InputDecoration(
+                    labelText: 'Phone Number',
+                    prefixIcon: Icon(Icons.phone_android),
+                  ),
+                  onChanged: (value) {
+                    setState(() {
+                      contactNumber = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 8.0),
+                TextField(
                   decoration: const InputDecoration(
                     labelText: 'City/Region',
                     prefixIcon: Icon(Icons.house_outlined),
                   ),
                   onChanged: (value) {
-                    setState(() { // Assuming this code is inside a Stateful widget
+                    setState(() {
                       city = value;
                     });
-                  }
+                  },
                 ),
-              ),
-               Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: TextField(
+                const SizedBox(height: 8.0),
+                TextField(
                   decoration: const InputDecoration(
                     labelText: 'Password',
                     prefixIcon: Icon(Icons.lock_outline),
                   ),
                   onChanged: (value) {
-                    setState(() { // Assuming this code is inside a Stateful widget
+                    setState(() {
                       password = value;
                     });
                   },
                   obscureText: true,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Text(
+                const SizedBox(height: 30.0),
+                Text(
                   response,
                   style: const TextStyle(
                     fontSize: 15,
@@ -165,35 +146,29 @@ class _SignUpState extends State<SignUp> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _signUpUser(
-                          username, password, email, city, contactNumber);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color(0xFF62A06F),
-                    ).copyWith(
-                      fixedSize: MaterialStateProperty.all(const Size(400, 50)),
-                    ),
-                    child: const Text(
-                      'Sign up',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                const SizedBox(height: 10.0),
+                ElevatedButton(
+                  onPressed: () {
+                    _signUpUser(
+                        username, password, email, city, contactNumber);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: const Color(0xFF62A06F),
+                    padding: const EdgeInsets.all(15.0),
+                  ).copyWith(
+                    fixedSize: MaterialStateProperty.all(const Size(400, 50)),
+                  ),
+                  child: const Text(
+                    'Sign up',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
+                const SizedBox(height: 20.0),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
@@ -216,10 +191,8 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0, left: 20.0),
-                child: Row(
+                const SizedBox(height: 20.0),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SocialButtonRect.socialButtonCircle(
@@ -238,27 +211,28 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("You have an account already?"),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/signin');
-                    },
-                    child: const Text(
-                      'sign up',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF62A06F),
+                const SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("You have an account already?"),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/signin');
+                      },
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF62A06F),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

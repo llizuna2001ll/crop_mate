@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'PT_Sans'),
-      initialRoute: '/first_step',
+      initialRoute: '/home',
       routes: {
         '/first_step': (context) => const FirstStep(),
         '/second_step': (context) => const SecondStep(),

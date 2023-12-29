@@ -71,6 +71,14 @@ flutter:
     - lib/assets/images/google.png
     - lib/assets/images/facebook.png
     - lib/assets/images/weather_icons/cloudy.png
+    - lib/assets/images/add_crop.png
+    - lib/assets/images/add_sensor.png
+    - lib/assets/images/next_icon.png
+    - lib/assets/images/user_icon.png
+    - lib/assets/images/scan_icon.png
+    - lib/assets/images/diagnose_icon.png
+    - lib/assets/images/status_icon.png
+    - lib/assets/images/chat_icon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
