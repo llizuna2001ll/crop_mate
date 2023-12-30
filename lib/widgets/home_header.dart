@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key});
+  final String username;
+
+  const HomeHeader({Key? key, required this.username}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,22 +14,22 @@ class HomeHeader extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipOval(
-            child: Image(
-              image: AssetImage("lib/assets/images/user_icon.png"),
+            child: Image.asset(
+              "lib/assets/images/user_icon.png",
               width: 30,
               height: 30,
               fit: BoxFit.cover, // Adjust the fit as needed
             ),
           ),
-          SizedBox(width: 10.0),
+          const SizedBox(width: 10.0),
           Text(
-            'username',
-            style: TextStyle(color: Colors.black, fontSize: 23.0),
+            username,
+            style: const TextStyle(color: Colors.black, fontSize: 23.0),
           ),
         ],
       ),

@@ -3,17 +3,31 @@ import 'package:flutter_projects/widgets/addition_rectangle.dart';
 import 'package:flutter_projects/widgets/features_container.dart';
 import 'package:flutter_projects/widgets/home_header.dart';
 import 'package:flutter_projects/widgets/weather.dart';
-import 'package:flutter_projects/widgets/navigation_bar.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 void main() {
   runApp(const Home());
 }
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  final token;
 
-  void _handleItemTap(int index) {
-    print("issam");
+  const Home({Key? key, @required this.token}) : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  late String username;
+
+  @override
+  void initState() {
+    super.initState();
+    Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
+
+    username = jwtDecodedToken['sub'];
   }
 
   @override
@@ -24,9 +38,9 @@ class Home extends StatelessWidget {
           padding: const EdgeInsets.only(top: 50.0),
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(bottom: 20.0),
-                child: HomeHeader(),
+               Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: HomeHeader(username: username),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
@@ -67,7 +81,7 @@ class Home extends StatelessWidget {
                           bottomText: 'Diagnose Disease',
                         ),
                         FeaturesContainer(
-                          imagePath: 'lib/assets/images/add_sensor.png',
+                          imagePath: 'lib/assets/images/status_icon.png',
                           text: 'Follow your soil status',
                           bottomText: 'Soil Status',
                         ),

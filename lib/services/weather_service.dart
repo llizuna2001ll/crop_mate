@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class WeatherService {
-  final String baseUrl = 'http://localhost:8888/api/v1/weather';
+  final String baseUrl = 'http://10.0.2.2:8888/api/v1/weather';
 
   Future<Map<String, String>> fetchWeatherData(String city) async {
     final url = Uri.parse('$baseUrl?location=$city');

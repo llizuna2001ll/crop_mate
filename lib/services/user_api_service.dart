@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class UserApiService {
-  static const String baseUrl = 'http://localhost:8888/api/v1/auth';
+  static const String baseUrl = 'http://10.0.2.2:8888/api/v1/auth';
 
   Future<Map<String, dynamic>> loginUser(String username, String password) async {
     final url = Uri.parse('$baseUrl/authenticate');

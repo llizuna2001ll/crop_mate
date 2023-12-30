@@ -1,28 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/screens/home.dart';
 import 'package:flutter_projects/services/user_api_service.dart';
 import 'package:flutter_projects/widgets/social_button_rect.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
+  @override
+  _SignInState createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
   final UserApiService _apiService = UserApiService();
   final storage = const FlutterSecureStorage();
+  late SharedPreferences sharedPreferences;
+
+  String username = '';
+  String password = '';
+
+  @override
+  void initState() {
+    super.initState();
+    initSharedPref();
+  }
+
+  void initSharedPref() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
 
   void _loginUser(String username, String password) async {
     final result = await _apiService.loginUser(username, password);
     if (result['success']) {
       print('Login Successful!');
       Map<String, dynamic> response = result['data'];
-      await storage.write(key: 'jwt', value: response['token']);
-      String? jwt = await storage.read(key: 'jwt');
-      print('jwt from storage:  $jwt');
+      sharedPreferences.setString('token', response['token']);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(token: response['token'])));
     } else {
       print('Login Failed: ${result['error']}');
     }
   }
-
-  String username = '';
-  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -117,16 +134,16 @@ class SignIn extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20.0),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Divider(
                       height: 1,
-                      color: const Color(0xFF9C9C9C),
+                      color: Color(0xFF9C9C9C),
                     ),
                   ),
-                  const Text(
+                  Text(
                     'or sign in with',
                     style: TextStyle(
                       fontSize: 16,
@@ -134,10 +151,10 @@ class SignIn extends StatelessWidget {
                       color: Color(0xFF9C9C9C),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     child: Divider(
                       height: 1,
-                      color: const Color(0xFF9C9C9C),
+                      color: Color(0xFF9C9C9C),
                     ),
                   ),
                 ],

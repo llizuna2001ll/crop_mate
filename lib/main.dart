@@ -6,25 +6,41 @@ import 'package:flutter_projects/screens/second_step.dart';
 import 'package:flutter_projects/screens/sign_in.dart';
 import 'package:flutter_projects/screens/sign_up.dart';
 import 'package:flutter_projects/screens/third_step.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  String? token = sharedPreferences.getString('token');
+
+  bool isLoggedIn = false;
+  if (token != null) {
+    isLoggedIn = !JwtDecoder.isExpired(token);
+  }
+
+  runApp(MyApp(isLoggedIn: isLoggedIn, token: token));
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  final bool isLoggedIn;
+  final String? token;
+
+  const MyApp({Key? key, required this.isLoggedIn, this.token}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'PT_Sans'),
-      initialRoute: '/home',
+      initialRoute: isLoggedIn ? '/home' : '/signing',
       routes: {
         '/first_step': (context) => const FirstStep(),
         '/second_step': (context) => const SecondStep(),
         '/third_step': (context) => const ThirdStep(),
-        '/signin': (context) => SignIn(),
+        '/signing': (context) => SignIn(),
         '/signup': (context) => SignUp(),
         '/reset_password': (context) => ResetPassword(),
-        '/home': (context) => const Home(),
+        '/home': (context) => Home(token: token),
       },
     );
   }
