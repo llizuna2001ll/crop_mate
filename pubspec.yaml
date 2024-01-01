@@ -39,6 +39,7 @@ dependencies:
   flutter_secure_storage: ^5.0.3
   jwt_decoder:
   shared_preferences:
+  google_nav_bar: ^5.0.6
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +81,8 @@ flutter:
     - lib/assets/images/diagnose_icon.png
     - lib/assets/images/status_icon.png
     - lib/assets/images/chat_icon.png
+    - lib/assets/images/chatbot_icon.png
+    - lib/assets/images/home_icon.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

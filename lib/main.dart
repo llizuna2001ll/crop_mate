@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/screens/chat_bot.dart';
 import 'package:flutter_projects/screens/first_step.dart';
 import 'package:flutter_projects/screens/home.dart';
 import 'package:flutter_projects/screens/reset_password.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'PT_Sans'),
-      initialRoute: isLoggedIn ? '/home' : '/signing',
+      // initialRoute: isLoggedIn ? '/home' : '/signing',
+      initialRoute: '/home',
       routes: {
         '/first_step': (context) => const FirstStep(),
         '/second_step': (context) => const SecondStep(),
@@ -40,6 +42,7 @@ class MyApp extends StatelessWidget {
         '/signing': (context) => SignIn(),
         '/signup': (context) => SignUp(),
         '/reset_password': (context) => ResetPassword(),
+        '/chatbot': (context) => const ChatBot(),
         '/home': (context) => Home(token: token),
       },
     );

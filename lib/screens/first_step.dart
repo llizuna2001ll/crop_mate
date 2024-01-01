@@ -25,8 +25,7 @@ class FirstStep extends StatelessWidget {
             const SizedBox(height: 20),
             // Add some space between the image and text
             const Padding(
-              padding:
-              EdgeInsets.only(bottom: 10.0, left: 100.0, right: 100.0),
+              padding: EdgeInsets.only(bottom: 10.0, left: 100.0, right: 100.0),
               child: Text(
                 'Monitoring soil and plant',
                 textAlign: TextAlign.center,
@@ -72,9 +71,8 @@ class FirstStep extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        minimumSize: MaterialStateProperty.all<Size>(
-                            const Size(
-                                180, 40)), // Adjust width and height here
+                        minimumSize: MaterialStateProperty.all<Size>(const Size(
+                            180, 40)), // Adjust width and height here
                       ),
                       onPressed: null,
                       child: const Text(
@@ -82,8 +80,7 @@ class FirstStep extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           // Set the font weight to bold
-                          fontSize:
-                          16, // Optional: Adjust font size if needed
+                          fontSize: 16, // Optional: Adjust font size if needed
                         ),
                       ),
                     ),
@@ -96,25 +93,25 @@ class FirstStep extends StatelessWidget {
                             const Color(0xFF4BA26A)),
                         // Change the background color here
                         minimumSize: MaterialStateProperty.all<Size>(
-                            const Size(
-                                180, 40)),
+                            const Size(180, 40)),
                       ),
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) =>const SecondStep(),
+                            pageBuilder: (context, animation1, animation2) =>
+                                const SecondStep(),
                             transitionDuration: Duration.zero,
                             reverseTransitionDuration: Duration.zero,
                           ),
-                        );                      },
+                        );
+                      },
                       child: const Text(
                         'Next',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           // Set the font weight to bold
-                          fontSize:
-                          16, // Optional: Adjust font size if needed
+                          fontSize: 16, // Optional: Adjust font size if needed
                         ),
                       ),
                     ),

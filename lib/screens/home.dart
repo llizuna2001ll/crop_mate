@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_projects/widgets/addition_rectangle.dart';
 import 'package:flutter_projects/widgets/features_container.dart';
 import 'package:flutter_projects/widgets/home_header.dart';
+import 'package:flutter_projects/widgets/navbar.dart';
 import 'package:flutter_projects/widgets/weather.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
@@ -33,6 +34,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const Navbar(selectedIndex: 0,),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 50.0),
@@ -78,7 +80,7 @@ class _HomeState extends State<Home> {
                         FeaturesContainer(
                           imagePath: 'lib/assets/images/diagnose_icon.png',
                           text: 'Diagnose your crop',
-                          bottomText: 'Diagnose Disease',
+                          bottomText: 'Diagnose',
                         ),
                         FeaturesContainer(
                           imagePath: 'lib/assets/images/status_icon.png',
