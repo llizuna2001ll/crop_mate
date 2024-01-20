@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/screens/home.dart';
-import 'package:flutter_projects/services/user_api_service.dart';
-import 'package:flutter_projects/widgets/social_button_rect.dart';
+import 'package:cropmate/screens/home.dart';
+import 'package:cropmate/services/user_api_service.dart';
+import 'package:cropmate/widgets/social_button_rect.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';

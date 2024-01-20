@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/screens/second_step.dart';
-import 'package:flutter_projects/screens/sign_in.dart';
+import 'package:cropmate/screens/second_step.dart';
+import 'package:cropmate/screens/sign_in.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class ThirdStep extends StatelessWidget {

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/screens/chat_bot.dart';
-import 'package:flutter_projects/screens/first_step.dart';
-import 'package:flutter_projects/screens/home.dart';
-import 'package:flutter_projects/screens/reset_password.dart';
-import 'package:flutter_projects/screens/second_step.dart';
-import 'package:flutter_projects/screens/sign_in.dart';
-import 'package:flutter_projects/screens/sign_up.dart';
-import 'package:flutter_projects/screens/third_step.dart';
+import 'package:cropmate/screens/chat_bot.dart';
+import 'package:cropmate/screens/crops.dart';
+import 'package:cropmate/screens/first_step.dart';
+import 'package:cropmate/screens/home.dart';
+import 'package:cropmate/screens/land_page.dart';
+import 'package:cropmate/screens/lands.dart';
+import 'package:cropmate/screens/reset_password.dart';
+import 'package:cropmate/screens/second_step.dart';
+import 'package:cropmate/screens/sign_in.dart';
+import 'package:cropmate/screens/sign_up.dart';
+import 'package:cropmate/screens/soil_status.dart';
+import 'package:cropmate/screens/third_step.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,8 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'PT_Sans'),
-      // initialRoute: isLoggedIn ? '/home' : '/signing',
-      initialRoute: '/home',
+      initialRoute: isLoggedIn ? '/home' : '/signing',
       routes: {
         '/first_step': (context) => const FirstStep(),
         '/second_step': (context) => const SecondStep(),
@@ -44,6 +47,10 @@ class MyApp extends StatelessWidget {
         '/reset_password': (context) => ResetPassword(),
         '/chatbot': (context) => const ChatBot(),
         '/home': (context) => Home(token: token),
+        '/lands': (context) => const Lands(),
+        '/landPage': (context) => LandPage(token: token),
+        '/crops': (context) => Crops(token: token),
+        '/soil_status': (context) => SoilStatus(token: token),
       },
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/models/Conversation.dart';
-import 'package:flutter_projects/screens/home.dart';
-import 'package:flutter_projects/services/chatbot_api_service.dart';
-import 'package:flutter_projects/widgets/conversation.dart';
+import 'package:cropmate/models/conversation_model.dart';
+import 'package:cropmate/screens/home.dart';
+import 'package:cropmate/services/chatbot_api_service.dart';
+import 'package:cropmate/widgets/conversation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../widgets/navbar.dart';
@@ -31,6 +31,24 @@ class _ChatBotState extends State<ChatBot> {
     Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
     username = jwtDecodedToken['sub'];
     _conversation = _apiService.getConversation(username);
+  }
+
+  Future<void> startConversation() async {
+    try {
+      // Call the createConversation method to create a new conversation
+      await _apiService.createConversation(username);
+
+      // Reload the current page using pushReplacement
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChatBot(token: widget.token),
+        ),
+      );
+    } catch (error) {
+      print('Error creating conversation: $error');
+      // Handle the error accordingly
+    }
   }
 
   @override
@@ -83,8 +101,10 @@ class _ChatBotState extends State<ChatBot> {
             future: _conversation,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator(); // Or any loading indicator
+                print('Loading...');
+                return const CircularProgressIndicator();
               } else if (!snapshot.hasData) {
+                print('No data or empty data.');
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,7 +133,7 @@ class _ChatBotState extends State<ChatBot> {
                     ),
                     const SizedBox(height: 30),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: startConversation,
                       style: ElevatedButton.styleFrom(
                         primary: const Color(0xFF4BA26A),
                         minimumSize: const Size(300, 50), // Set minimum size
@@ -135,7 +155,7 @@ class _ChatBotState extends State<ChatBot> {
                 print('Messages: ${conversation.username}');
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                  child:  Conversations(),
+                  child:  Conversations(conversationId: conversation.id),
                 );
               }
             },

@@ -4,12 +4,15 @@ class FeaturesContainer extends StatelessWidget {
   final String imagePath;
   final String text;
   final String bottomText;
+  final Function onTap;
 
-  const FeaturesContainer({super.key,
+  const FeaturesContainer({
+    Key? key,
     required this.imagePath,
     required this.text,
     required this.bottomText,
-  });
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,31 +53,36 @@ class FeaturesContainer extends StatelessWidget {
           const SizedBox(height: 5), // Add spacing between text and bottom section
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 7.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.0),
-              decoration: BoxDecoration(
-                color: const Color(0xFF4BA26A),
-                borderRadius: BorderRadius.circular(14.0),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    bottomText,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+            child: GestureDetector(
+              onTap: () {
+                onTap();
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 7.0),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF4BA26A),
+                  borderRadius: BorderRadius.circular(14.0),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      bottomText,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 5), // Add spacing between image and text
-                  Image.asset(
-                    "lib/assets/images/next_icon.png",
-                    width: 20,
-                    height: 20,
-                    fit: BoxFit.contain,
-                  ),
-                ],
+                    const SizedBox(width: 5), // Add spacing between image and text
+                    Image.asset(
+                      "lib/assets/images/next_icon.png",
+                      width: 20,
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

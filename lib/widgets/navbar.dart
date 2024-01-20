@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/screens/chat_bot.dart';
+import 'package:cropmate/screens/CropPage.dart';
+import 'package:cropmate/screens/chat_bot.dart';
+import 'package:cropmate/screens/crops.dart';
+import 'package:cropmate/screens/lands.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,8 +64,8 @@ class _NavbarState extends State<Navbar> {
                   iconSize: 28,
                 ),
                 GButton(
-                  icon: FontAwesomeIcons.locationDot,
-                  text: 'Favorite',
+                  icon: FontAwesomeIcons.wheatAwn,
+                  text: 'Crops',
                   textStyle: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -107,6 +110,17 @@ class _NavbarState extends State<Navbar> {
                     PageRouteBuilder(
                       pageBuilder: (context, animation1, animation2) =>
                           ChatBot(token: sharedPreferences.getString('token')),
+                      transitionDuration: Duration.zero,
+                      reverseTransitionDuration: Duration.zero,
+                    ),
+                  );
+                }
+                else if (index == 1) {
+                  Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation1, animation2) =>
+                          Crops(token: sharedPreferences.getString('token')),
                       transitionDuration: Duration.zero,
                       reverseTransitionDuration: Duration.zero,
                     ),
